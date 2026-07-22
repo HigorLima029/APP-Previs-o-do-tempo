@@ -1,0 +1,20 @@
+.mensagem-erro {
+  margin-top: 28px;
+  padding: 32px 26px;
+  border-radius: 24px;
+  background: var(--cor-vidro);
+  border: 1px solid var(--cor-vidro-borda);
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: var(--cor-texto-suave);
+  animation: aparecer 0.4s ease;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,15 @@
+.pagina {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: color 0.5s ease;
+  color: var(--cor-texto);
+}
+
+.caixa-principal {
+  width: 100%;
+  max-width: 420px;
+}

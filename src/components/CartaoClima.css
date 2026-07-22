@@ -1,0 +1,91 @@
+.cartao {
+  margin-top: 28px;
+  padding: 28px 26px;
+  border-radius: 24px;
+  background: var(--cor-vidro);
+  border: 1px solid var(--cor-vidro-borda);
+  backdrop-filter: blur(14px);
+  animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cartao__cidade {
+  font-family: var(--fonte-display);
+  font-size: 26px;
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cartao__pais {
+  font-family: var(--fonte-dados);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cor-texto-suave);
+  letter-spacing: 0.05em;
+}
+
+.cartao__descricao {
+  margin-top: 4px;
+  color: var(--cor-texto-suave);
+  text-transform: capitalize;
+  font-size: 15px;
+}
+
+.cartao__principal {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 22px;
+  color: var(--acento);
+}
+
+.cartao__temperatura {
+  font-family: var(--fonte-display);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1;
+}
+
+.cartao__sensacao {
+  margin-top: 6px;
+  font-family: var(--fonte-dados);
+  font-size: 14px;
+  color: var(--cor-texto-suave);
+}
+
+.cartao__grade {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cartao__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cartao__item-label {
+  display: block;
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+}
+
+.cartao__item-valor {
+  display: block;
+  font-family: var(--fonte-dados);
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 2px;
+}

@@ -1,0 +1,233 @@
+.cena {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  transition: background 0.9s ease;
+}
+
+.cena__ceu {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--ceu-1) 0%, var(--ceu-2) 100%);
+  transition: background 0.9s ease;
+}
+
+/* ---------- Sol ---------- */
+
+.cena__sol {
+  position: absolute;
+  top: 12%;
+  right: 14%;
+  width: 140px;
+  height: 140px;
+}
+
+.cena__sol-nucleo {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: var(--acento);
+  box-shadow: 0 0 60px 20px rgba(255, 200, 87, 0.55);
+  animation: pulsar 4s ease-in-out infinite;
+}
+
+.cena__sol-raios {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 200, 87, 0.35) 0%, transparent 70%);
+  animation: girar 40s linear infinite;
+}
+
+@keyframes pulsar {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.9; }
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Lua e estrelas ---------- */
+
+.cena__lua {
+  position: absolute;
+  top: 10%;
+  right: 16%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--acento);
+  box-shadow: inset -20px -8px 0 0 rgba(11, 16, 38, 0.35), 0 0 40px 6px rgba(232, 236, 244, 0.25);
+}
+
+.cena__campo-estrelas {
+  position: absolute;
+  inset: 0;
+}
+
+.cena__estrela {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  animation: piscar linear infinite;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
+}
+
+/* ---------- Nuvens ---------- */
+
+.cena__nuvens {
+  position: absolute;
+  inset: 0;
+}
+
+.cena__nuvem {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 100px;
+  filter: blur(1px);
+  opacity: 0.8;
+}
+
+.cena__nuvem::before,
+.cena__nuvem::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.cena__nuvem--1 {
+  width: 180px;
+  height: 55px;
+  top: 18%;
+  left: -20%;
+  animation: derivar 55s linear infinite;
+}
+.cena__nuvem--1::before { width: 90px; height: 90px; top: -45px; left: 20px; }
+.cena__nuvem--1::after { width: 70px; height: 70px; top: -30px; left: 100px; }
+
+.cena__nuvem--2 {
+  width: 130px;
+  height: 40px;
+  top: 32%;
+  left: -25%;
+  opacity: 0.6;
+  animation: derivar 75s linear infinite;
+  animation-delay: -20s;
+}
+.cena__nuvem--2::before { width: 60px; height: 60px; top: -28px; left: 15px; }
+.cena__nuvem--2::after { width: 50px; height: 50px; top: -20px; left: 70px; }
+
+.cena__nuvem--3 {
+  width: 220px;
+  height: 60px;
+  top: 8%;
+  left: -30%;
+  opacity: 0.5;
+  animation: derivar 90s linear infinite;
+  animation-delay: -45s;
+}
+.cena__nuvem--3::before { width: 100px; height: 100px; top: -50px; left: 30px; }
+.cena__nuvem--3::after { width: 80px; height: 80px; top: -35px; left: 130px; }
+
+@keyframes derivar {
+  from { transform: translateX(0); }
+  to { transform: translateX(160vw); }
+}
+
+/* ---------- Neblina ---------- */
+
+.cena__banco-neblina {
+  position: absolute;
+  left: -20%;
+  width: 140%;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  filter: blur(12px);
+}
+
+.cena__banco-neblina--1 { top: 20%; animation: flutuar 30s ease-in-out infinite; }
+.cena__banco-neblina--2 { top: 45%; opacity: 0.7; animation: flutuar 24s ease-in-out infinite reverse; }
+.cena__banco-neblina--3 { top: 68%; opacity: 0.5; animation: flutuar 36s ease-in-out infinite; }
+
+@keyframes flutuar {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6%); }
+}
+
+/* ---------- Chuva ---------- */
+
+.cena__chuva {
+  position: absolute;
+  inset: 0;
+}
+
+.cena__gota {
+  position: absolute;
+  top: -10%;
+  width: 2px;
+  height: 70px;
+  background: linear-gradient(to bottom, transparent, var(--acento));
+  opacity: 0.55;
+  animation: cair linear infinite;
+}
+
+@keyframes cair {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(110vh); }
+}
+
+.cena__relampago {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  animation: flash 7s ease-in-out infinite;
+}
+
+@keyframes flash {
+  0%, 92%, 100% { opacity: 0; }
+  93% { opacity: 0.5; }
+  94% { opacity: 0; }
+  95% { opacity: 0.3; }
+  96% { opacity: 0; }
+}
+
+/* ---------- Neve ---------- */
+
+.cena__neve {
+  position: absolute;
+  inset: 0;
+}
+
+.cena__floco {
+  position: absolute;
+  top: -5%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 0.85;
+  animation: nevar linear infinite;
+}
+
+@keyframes nevar {
+  from { transform: translate(0, -5vh) rotate(0deg); }
+  to { transform: translate(30px, 110vh) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cena * {
+    animation: none !important;
+  }
+}
