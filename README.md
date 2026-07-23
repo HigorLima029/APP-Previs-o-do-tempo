@@ -23,16 +23,27 @@ npm run dev
 ⚠️ **Importante**: a chave antiga do projeto original ficou exposta no código (`scripts.js`).
 Gere uma chave nova em https://openweathermap.org/api e revogue a antiga antes de usar este projeto.
 
+⚠️ **Índice UV**: esse dado vem do **One Call API 3.0**, que exige uma assinatura separada
+na sua conta OpenWeather (tem um plano gratuito, mas precisa ser habilitado — e pode pedir
+cartão de crédito). Se não estiver habilitado, o card do índice UV simplesmente não aparece;
+o resto do app continua funcionando normal, sem quebrar.
+
 ## Estrutura
 
 ```
 src/
-  api/weather.ts          # chamada à API do OpenWeather
-  types/weather.ts         # tipos + normalização dos dados da API
-  utils/weatherTheme.ts     # mapeia código de clima -> tema visual
-  context/CidadeContext.tsx # Context API (cidade atual)
-  hooks/useWeather.ts        # hook do TanStack Query (clima atual)
-  hooks/useForecast.ts        # hook do TanStack Query (previsão de 5 dias)
+  api/weather.ts            # chamadas às APIs do OpenWeather (clima, previsão, UV)
+  types/weather.ts           # tipos + normalização dos dados da API
+  utils/weatherTheme.ts       # mapeia código de clima -> tema visual
+  utils/agruparPrevisao.ts     # agrupa a previsão de 3/3h em resumo diário
+  utils/vento.ts                # graus -> ponto cardeal (N, NE, L...)
+  utils/pais.ts                  # código do país -> nome completo em pt-BR
+  utils/horario.ts                # horário local da cidade a partir do timezone
+  utils/uv.ts                      # classifica o índice UV (nível + cor)
+  context/CidadeContext.tsx  # Context API (cidade atual)
+  hooks/useWeather.ts         # hook do TanStack Query (clima atual)
+  hooks/useForecast.ts         # hook do TanStack Query (previsão de 5 dias)
+  hooks/useUVIndex.ts            # hook do TanStack Query (índice UV, opcional)
   components/
     Cena.tsx               # fundo animado (sol, chuva, neve, nuvens...)
     BarraDeBusca.tsx
@@ -61,6 +72,16 @@ src/
       com os estados do TanStack Query
 - [x] Busca por Enter, além do clique
 
+## O que já está pronto (Nível 2 — mais dados)
+
+- [x] Direção do vento (ponto cardeal + ícone rotacionado)
+- [x] Pressão atmosférica
+- [x] Pôr do sol (além do nascer do sol)
+- [x] Latitude/longitude e nome completo do país
+- [x] Horário local da cidade (calculado a partir do offset de timezone da API)
+- [x] Índice UV, com nível (baixo/moderado/alto/muito alto/extremo) e cor — via
+      One Call API 3.0 (ver aviso acima; opcional/gracioso se não configurado)
+
 ## O que já está pronto (Nível 3 — previsão estendida)
 
 - [x] Previsão de 5 dias em cards horizontais (endpoint `/forecast`, agrupando os
@@ -69,11 +90,6 @@ src/
 
 ## Roadmap (próximos passos, ainda não implementados)
 
-**Nível 2 — mais dados**
-- [ ] Direção do vento, pressão atmosférica, pôr do sol, latitude/longitude, país
-      completo, horário local, índice UV
-
-**Outras melhorias da lista**
 - [ ] Geolocalização automática ao abrir o site
 - [ ] Tema claro/escuro com preferência salva
 - [ ] Histórico de pesquisas e favoritos (localStorage)

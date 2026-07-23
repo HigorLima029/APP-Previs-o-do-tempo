@@ -37,6 +37,14 @@
   font-size: 15px;
 }
 
+.cartao__local {
+  margin-top: 6px;
+  font-family: var(--fonte-dados);
+  font-size: 11px;
+  color: var(--cor-texto-suave);
+  letter-spacing: 0.03em;
+}
+
 .cartao__principal {
   display: flex;
   align-items: center;

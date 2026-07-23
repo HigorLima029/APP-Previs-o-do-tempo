@@ -45,17 +45,31 @@ export type WeatherTheme =
 export interface WeatherData {
   cidade: string;
   pais: string;
+  paisCompleto: string;
   temperatura: number;
   sensacao: number;
   descricao: string;
   umidade: number;
   vento: number;
+  direcaoVento: number;
+  direcaoVentoLabel: string;
+  pressao: number;
   visibilidade: number;
   nascerDoSol: number;
   porDoSol: number;
+  latitude: number;
+  longitude: number;
+  timezone: number;
   tema: WeatherTheme;
   ehNoite: boolean;
   atualizadoEm: number;
+}
+
+// Formato bruto do endpoint /onecall (usado só para o índice UV)
+export interface OpenWeatherOneCallResponse {
+  current: {
+    uvi: number;
+  };
 }
 
 // Formato bruto do endpoint /forecast (previsão de 5 dias / 3 em 3 horas)

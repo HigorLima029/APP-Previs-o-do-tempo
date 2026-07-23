@@ -1,6 +1,7 @@
 import { useCidade } from "../context/CidadeContext";
 import { useWeather } from "../hooks/useWeather";
 import { useForecast } from "../hooks/useForecast";
+import { useUVIndex } from "../hooks/useUVIndex";
 import { CidadeNaoEncontradaError } from "../types/weather";
 import Cena from "../components/Cena";
 import BarraDeBusca from "../components/BarraDeBusca";
@@ -14,6 +15,7 @@ export default function Home() {
   const { cidade, buscarCidade } = useCidade();
   const { data: clima, isLoading, isError, error } = useWeather(cidade);
   const { data: previsao } = useForecast(cidade);
+  const { data: indiceUV } = useUVIndex(clima?.latitude, clima?.longitude);
 
   const mensagemDeErro =
     error instanceof CidadeNaoEncontradaError
@@ -29,7 +31,7 @@ export default function Home() {
 
         {isLoading && <Carregando />}
         {isError && !isLoading && <MensagemErro mensagem={mensagemDeErro} />}
-        {clima && !isLoading && !isError && <CartaoClima clima={clima} />}
+        {clima && !isLoading && !isError && <CartaoClima clima={clima} indiceUV={indiceUV} />}
         {previsao && !isLoading && !isError && <Previsao5Dias dias={previsao} />}
       </main>
     </div>
