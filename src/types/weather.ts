@@ -58,6 +58,37 @@ export interface WeatherData {
   atualizadoEm: number;
 }
 
+// Formato bruto do endpoint /forecast (previsão de 5 dias / 3 em 3 horas)
+export interface OpenWeatherForecastResponse {
+  city: {
+    name: string;
+    country: string;
+  };
+  list: {
+    dt: number;
+    dt_txt: string;
+    main: {
+      temp_min: number;
+      temp_max: number;
+    };
+    weather: {
+      id: number;
+      icon: string;
+      description: string;
+    }[];
+  }[];
+}
+
+// Um dia já resumido, pronto para o card horizontal
+export interface PrevisaoDia {
+  data: number; // timestamp (meio-dia daquele dia)
+  diaSemana: string; // "Hoje", "Amanhã", "Qui", "Sex"...
+  minima: number;
+  maxima: number;
+  tema: WeatherTheme;
+  descricao: string;
+}
+
 export class CidadeNaoEncontradaError extends Error {
   constructor(cidade: string) {
     super(`Cidade "${cidade}" não encontrada`);

@@ -31,7 +31,8 @@ body,
 body {
   font-family: var(--fonte-corpo);
   color: var(--cor-texto);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 button {

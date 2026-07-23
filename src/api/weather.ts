@@ -1,8 +1,16 @@
-import { CidadeNaoEncontradaError, type OpenWeatherResponse, type WeatherData } from "../types/weather";
+import {
+  CidadeNaoEncontradaError,
+  type OpenWeatherForecastResponse,
+  type OpenWeatherResponse,
+  type PrevisaoDia,
+  type WeatherData,
+} from "../types/weather";
 import { definirTema } from "../utils/weatherTheme";
+import { agruparPorDia } from "../utils/agruparPrevisao";
 
 const CHAVE_API = import.meta.env.VITE_OPENWEATHER_API_KEY;
 const URL_BASE = "https://api.openweathermap.org/data/2.5/weather";
+const URL_PREVISAO = "https://api.openweathermap.org/data/2.5/forecast";
 
 function normalizarDados(dados: OpenWeatherResponse): WeatherData {
   const clima = dados.weather[0];
@@ -45,4 +53,26 @@ export async function buscarClimaPorCidade(cidade: string): Promise<WeatherData>
 
   const dados: OpenWeatherResponse = await resposta.json();
   return normalizarDados(dados);
+}
+
+export async function buscarPrevisao5Dias(cidade: string): Promise<PrevisaoDia[]> {
+  const params = new URLSearchParams({
+    q: cidade,
+    appid: CHAVE_API,
+    lang: "pt_br",
+    units: "metric",
+  });
+
+  const resposta = await fetch(`${URL_PREVISAO}?${params.toString()}`);
+
+  if (resposta.status === 404) {
+    throw new CidadeNaoEncontradaError(cidade);
+  }
+
+  if (!resposta.ok) {
+    throw new Error("Não foi possível buscar a previsão estendida agora.");
+  }
+
+  const dados: OpenWeatherForecastResponse = await resposta.json();
+  return agruparPorDia(dados);
 }

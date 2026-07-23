@@ -31,11 +31,13 @@ src/
   types/weather.ts         # tipos + normalização dos dados da API
   utils/weatherTheme.ts     # mapeia código de clima -> tema visual
   context/CidadeContext.tsx # Context API (cidade atual)
-  hooks/useWeather.ts        # hook do TanStack Query
+  hooks/useWeather.ts        # hook do TanStack Query (clima atual)
+  hooks/useForecast.ts        # hook do TanStack Query (previsão de 5 dias)
   components/
     Cena.tsx               # fundo animado (sol, chuva, neve, nuvens...)
     BarraDeBusca.tsx
     CartaoClima.tsx
+    Previsao5Dias.tsx       # cards horizontais com a previsão de 5 dias
     IconeClima.tsx
     Carregando.tsx          # skeleton de loading
     MensagemErro.tsx
@@ -59,14 +61,17 @@ src/
       com os estados do TanStack Query
 - [x] Busca por Enter, além do clique
 
+## O que já está pronto (Nível 3 — previsão estendida)
+
+- [x] Previsão de 5 dias em cards horizontais (endpoint `/forecast`, agrupando os
+      dados de 3 em 3 horas por dia — mínima, máxima e ícone do horário mais
+      próximo do meio-dia)
+
 ## Roadmap (próximos passos, ainda não implementados)
 
 **Nível 2 — mais dados**
 - [ ] Direção do vento, pressão atmosférica, pôr do sol, latitude/longitude, país
       completo, horário local, índice UV
-
-**Nível 3 — previsão estendida**
-- [ ] Previsão de 5 dias em cards horizontais
 
 **Outras melhorias da lista**
 - [ ] Geolocalização automática ao abrir o site
