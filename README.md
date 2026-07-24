@@ -7,22 +7,11 @@ Além das informações meteorológicas em tempo real, o aplicativo oferece uma 
 ---
 
 ## 📷 Preview
-<<<<<<< HEAD
 
 > Adicione aqui uma imagem ou GIF do projeto.
 
 ```md
-![Preview do projeto]c:\app previsão do tempo\Video Project 1.gif
-=======
-
-> Adicione aqui uma imagem ou GIF do projeto.
-
-
-
-```md
-![Preview do projeto]<img width="426" height="240" alt="Video Project 1" src="https://github.com/user-attachments/assets/79f27fa5-29cd-46bd-b734-9c130324bd92" />
-
->>>>>>> 5eeba40a3ac4b3a4b29ca93360a1c936798401a2
+![Preview do projeto](./assets/preview.gif)
 ```
 
 ---
@@ -283,13 +272,8 @@ Este projeto utiliza diversas boas práticas do ecossistema React:
 
 Desenvolvido por **Higor Lima**.
 
-<<<<<<< HEAD
 * 💼 Analista de Suporte IoT
 * 💻 Desenvolvedor Front-end
-=======
-* 💼 Líder no desenvolvimento IOT
-* 💻 Desenvolvedor Fullstack
->>>>>>> 5eeba40a3ac4b3a4b29ca93360a1c936798401a2
 * ⚛️ React • TypeScript • JavaScript • C# • .NET
 
 Se este projeto foi útil para você, deixe uma ⭐ no repositório.
