@@ -10,9 +10,8 @@ Além das informações meteorológicas em tempo real, o aplicativo oferece uma 
 
 > Adicione aqui uma imagem ou GIF do projeto.
 
-```md
+
 ![Preview](assets/preview.gif)
-```
 
 ---
 
