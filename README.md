@@ -8,8 +8,6 @@ Além das informações meteorológicas em tempo real, o aplicativo oferece uma 
 
 ## 📷 Preview
 
-> Adicione aqui uma imagem ou GIF do projeto.
-
 
 ![Preview](assets/preview.gif)
 
