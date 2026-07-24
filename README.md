@@ -9,11 +9,12 @@ Além das informações meteorológicas em tempo real, o aplicativo oferece uma 
 ## 📷 Preview
 
 > Adicione aqui uma imagem ou GIF do projeto.
-> ![Uploading Video Project 1.gif…]()
+
 
 
 ```md
-![Preview do projeto](./public/preview.png)
+![Preview do projeto]<img width="426" height="240" alt="Video Project 1" src="https://github.com/user-attachments/assets/79f27fa5-29cd-46bd-b734-9c130324bd92" />
+
 ```
 
 ---
