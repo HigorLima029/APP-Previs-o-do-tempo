@@ -1,101 +1,279 @@
-# Dev Previsão
+# 🌤️ Dev Previsão
 
-App de previsão do tempo migrado de HTML/CSS/JS puro para **React + Vite + TypeScript**.
+Uma aplicação moderna de previsão do tempo desenvolvida com **React + Vite + TypeScript**, consumindo a API do **OpenWeather**. O projeto nasceu a partir de uma versão em **HTML, CSS e JavaScript puro** e foi totalmente reestruturado utilizando as principais ferramentas do ecossistema React.
 
-## Stack
+Além das informações meteorológicas em tempo real, o aplicativo oferece uma interface dinâmica que muda conforme as condições climáticas, animações, previsão para cinco dias e uma arquitetura escalável.
 
-- **Vite + React + TypeScript**
-- **React Router** — rotas (`/` e página 404)
-- **Context API** (`CidadeContext`) — guarda a cidade pesquisada atualmente
-- **TanStack Query** (`useWeather`) — busca, cache (5 min) e estados de loading/erro
-- **lucide-react** — ícones
-- CSS puro com variáveis (`--ceu-1`, `--ceu-2`, `--acento`) trocadas por tema de clima
+---
 
-## Como rodar
+## 📷 Preview
 
-```bash
-npm install
-cp .env.example .env
-# edite o .env e coloque sua chave da API do OpenWeather
-npm run dev
+> Adicione aqui uma imagem ou GIF do projeto.
+
+```md
+![Preview do projeto](./public/preview.png)
 ```
 
-⚠️ **Importante**: a chave antiga do projeto original ficou exposta no código (`scripts.js`).
-Gere uma chave nova em https://openweathermap.org/api e revogue a antiga antes de usar este projeto.
+---
 
-⚠️ **Índice UV**: esse dado vem do **One Call API 3.0**, que exige uma assinatura separada
-na sua conta OpenWeather (tem um plano gratuito, mas precisa ser habilitado — e pode pedir
-cartão de crédito). Se não estiver habilitado, o card do índice UV simplesmente não aparece;
-o resto do app continua funcionando normal, sem quebrar.
+## 🚀 Tecnologias
 
-## Estrutura
+* ⚛️ React 19
+* ⚡ Vite
+* 🔷 TypeScript
+* 🛣️ React Router
+* 📦 TanStack Query (React Query)
+* 🌐 Context API
+* 🎨 CSS3
+* 🎯 Lucide React
+* ☁️ OpenWeather API
+
+---
+
+## ✨ Funcionalidades
+
+### 🌍 Clima em tempo real
+
+* Pesquisa de cidades
+* Temperatura atual
+* Sensação térmica
+* Umidade
+* Velocidade do vento
+* Direção do vento (N, NE, L, SO...)
+* Pressão atmosférica
+* Visibilidade
+* Nascer do sol
+* Pôr do sol
+* Latitude e longitude
+* Nome completo do país
+* Horário local da cidade
+
+---
+
+### 🌤️ Interface dinâmica
+
+O aplicativo altera automaticamente toda sua aparência conforme o clima da cidade pesquisada.
+
+Temas disponíveis:
+
+* ☀️ Céu limpo (Dia)
+* 🌙 Céu limpo (Noite)
+* ☁️ Nublado
+* 🌧️ Chuva
+* ⛈️ Tempestade
+* ❄️ Neve
+* 🌫️ Neblina
+
+Cada tema possui sua própria paleta de cores e animações.
+
+---
+
+### ✨ Animações
+
+* Sol pulsando
+* Lua e estrelas piscando
+* Nuvens em movimento
+* Chuva animada
+* Raios durante tempestades
+* Neve caindo
+* Neblina flutuando
+* Transição suave entre cidades
+
+---
+
+### 📅 Previsão para 5 dias
+
+O projeto utiliza o endpoint `/forecast` da OpenWeather para gerar uma previsão resumida de cinco dias.
+
+Cada card apresenta:
+
+* Temperatura mínima
+* Temperatura máxima
+* Ícone representativo
+* Dia da semana
+
+---
+
+### 🟢 Índice UV
+
+Caso a **One Call API 3.0** esteja habilitada na conta OpenWeather, o aplicativo exibe:
+
+* Valor do índice UV
+* Classificação:
+
+  * Baixo
+  * Moderado
+  * Alto
+  * Muito Alto
+  * Extremo
+
+Caso a API não esteja disponível, o restante do sistema continua funcionando normalmente.
+
+---
+
+## 🏗️ Arquitetura
+
+O projeto foi organizado para facilitar manutenção e escalabilidade.
 
 ```
 src/
-  api/weather.ts            # chamadas às APIs do OpenWeather (clima, previsão, UV)
-  types/weather.ts           # tipos + normalização dos dados da API
-  utils/weatherTheme.ts       # mapeia código de clima -> tema visual
-  utils/agruparPrevisao.ts     # agrupa a previsão de 3/3h em resumo diário
-  utils/vento.ts                # graus -> ponto cardeal (N, NE, L...)
-  utils/pais.ts                  # código do país -> nome completo em pt-BR
-  utils/horario.ts                # horário local da cidade a partir do timezone
-  utils/uv.ts                      # classifica o índice UV (nível + cor)
-  context/CidadeContext.tsx  # Context API (cidade atual)
-  hooks/useWeather.ts         # hook do TanStack Query (clima atual)
-  hooks/useForecast.ts         # hook do TanStack Query (previsão de 5 dias)
-  hooks/useUVIndex.ts            # hook do TanStack Query (índice UV, opcional)
-  components/
-    Cena.tsx               # fundo animado (sol, chuva, neve, nuvens...)
-    BarraDeBusca.tsx
-    CartaoClima.tsx
-    Previsao5Dias.tsx       # cards horizontais com a previsão de 5 dias
-    IconeClima.tsx
-    Carregando.tsx          # skeleton de loading
-    MensagemErro.tsx
-  pages/
-    Home.tsx
-    NaoEncontrado.tsx
+│
+├── api/
+│   └── weather.ts
+│
+├── components/
+│   ├── BarraDeBusca.tsx
+│   ├── CartaoClima.tsx
+│   ├── Carregando.tsx
+│   ├── Cena.tsx
+│   ├── IconeClima.tsx
+│   ├── MensagemErro.tsx
+│   └── Previsao5Dias.tsx
+│
+├── context/
+│   └── CidadeContext.tsx
+│
+├── hooks/
+│   ├── useForecast.ts
+│   ├── useUVIndex.ts
+│   └── useWeather.ts
+│
+├── pages/
+│   ├── Home.tsx
+│   └── NaoEncontrado.tsx
+│
+├── types/
+│   └── weather.ts
+│
+└── utils/
+    ├── agruparPrevisao.ts
+    ├── horario.ts
+    ├── pais.ts
+    ├── uv.ts
+    ├── vento.ts
+    └── weatherTheme.ts
 ```
 
-## O que já está pronto (Nível 1 — melhorias visuais)
+---
 
-- [x] Fundo muda conforme o clima (7 temas: dia limpo, noite limpa, nublado, chuva,
-      tempestade, neve, neblina), cada um com paleta e animação próprias
-- [x] Animações: sol pulsando, lua + estrelas piscando, nuvens derivando, chuva caindo,
-      raio piscando, neve caindo, neblina flutuando
-- [x] Fade suave ao trocar de cidade
-- [x] Loading com skeleton no formato do card
-- [x] Cards modernos: temperatura, sensação térmica, umidade, vento, visibilidade,
-      nascer do sol
-- [x] Ícones da lucide-react no lugar dos PNGs do OpenWeather
-- [x] Tratamento de erro (cidade não encontrada / falha na API) — ganho "de graça"
-      com os estados do TanStack Query
-- [x] Busca por Enter, além do clique
+## ⚙️ Como executar
 
-## O que já está pronto (Nível 2 — mais dados)
+Clone o projeto:
 
-- [x] Direção do vento (ponto cardeal + ícone rotacionado)
-- [x] Pressão atmosférica
-- [x] Pôr do sol (além do nascer do sol)
-- [x] Latitude/longitude e nome completo do país
-- [x] Horário local da cidade (calculado a partir do offset de timezone da API)
-- [x] Índice UV, com nível (baixo/moderado/alto/muito alto/extremo) e cor — via
-      One Call API 3.0 (ver aviso acima; opcional/gracioso se não configurado)
+```bash
+git clone https://github.com/SEU-USUARIO/dev-previsao.git
+```
 
-## O que já está pronto (Nível 3 — previsão estendida)
+Entre na pasta:
 
-- [x] Previsão de 5 dias em cards horizontais (endpoint `/forecast`, agrupando os
-      dados de 3 em 3 horas por dia — mínima, máxima e ícone do horário mais
-      próximo do meio-dia)
+```bash
+cd dev-previsao
+```
 
-## Roadmap (próximos passos, ainda não implementados)
+Instale as dependências:
 
-- [ ] Geolocalização automática ao abrir o site
-- [ ] Tema claro/escuro com preferência salva
-- [ ] Histórico de pesquisas e favoritos (localStorage)
-- [ ] Última cidade pesquisada salva
-- [ ] Bandeira do país
-- [ ] Mapa (Leaflet), gráfico de temperatura (Chart.js)
-- [ ] Qualidade do ar, radar de chuva, alertas climáticos
-- [ ] Compartilhar clima, PWA, busca com autocomplete, multi-idiomas, sons ambiente,
-      estatísticas de uso
+```bash
+npm install
+```
+
+Crie o arquivo `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Adicione sua chave da OpenWeather:
+
+```env
+VITE_OPENWEATHER_API_KEY=SUA_CHAVE
+```
+
+Execute o projeto:
+
+```bash
+npm run dev
+```
+
+---
+
+## 🔑 Configuração da API
+
+Este projeto utiliza a API da OpenWeather.
+
+Crie uma conta gratuitamente e obtenha sua chave em:
+
+https://openweathermap.org/api
+
+> **Importante**
+>
+> A chave utilizada durante o desenvolvimento da versão original foi removida do repositório. Sempre utilize uma chave própria.
+
+---
+
+## 📌 OpenWeather One Call API
+
+O card de **Índice UV** depende da **One Call API 3.0**.
+
+Essa API precisa estar habilitada na conta da OpenWeather e, em alguns casos, pode solicitar um cartão de crédito para ativação do plano gratuito.
+
+Caso ela não esteja disponível:
+
+* ✅ Todo o restante da aplicação continua funcionando normalmente.
+* ❌ Apenas o card do Índice UV deixa de ser exibido.
+
+---
+
+## 📈 Roadmap
+
+Próximas funcionalidades planejadas:
+
+* [ ] Geolocalização automática
+* [ ] Tema Claro/Escuro
+* [ ] Histórico de pesquisas
+* [ ] Favoritos
+* [ ] Última cidade pesquisada
+* [ ] Bandeira do país
+* [ ] Mapa com Leaflet
+* [ ] Gráfico de temperatura
+* [ ] Qualidade do ar
+* [ ] Radar meteorológico
+* [ ] Alertas climáticos
+* [ ] Compartilhar clima
+* [ ] Progressive Web App (PWA)
+* [ ] Autocomplete na pesquisa
+* [ ] Multi-idiomas
+* [ ] Sons ambientes
+* [ ] Estatísticas de uso
+
+---
+
+## 📚 Conceitos aplicados
+
+Este projeto utiliza diversas boas práticas do ecossistema React:
+
+* Componentização
+* Reutilização de componentes
+* Context API
+* Custom Hooks
+* React Router
+* TanStack Query
+* Cache automático
+* Loading States
+* Error States
+* TypeScript
+* Organização por responsabilidades
+* Variáveis CSS
+* Responsividade
+* Consumo de APIs REST
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Higor Lima**.
+
+* 💼 Líder no desenvolvimento IOT
+* 💻 Desenvolvedor Fullstack
+* ⚛️ React • TypeScript • JavaScript • C# • .NET
+
+Se este projeto foi útil para você, deixe uma ⭐ no repositório.
